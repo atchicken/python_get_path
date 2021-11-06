@@ -5,9 +5,17 @@ from glob import glob
 
 def main():
     
-    # path.pyにおける絶対パスを取得
-    path = os.path.abspath(__file__)
-    print("Absolute Path: {}".format(path))
+    # 絶対パスを取得
+    absPath = os.path.abspath(__file__)
+    print("Absolute Path: {}".format(absPath))
+
+    # 相対パスを取得
+    relPath = os.path.relpath(__file__, "./")
+    print("Relative Path: {}".format(relPath))
+
+    # 現在地のディレクトリを取得
+    dire = os.getcwd()
+    print("Directry: {}".format(dire))
     
     # [0]: ディレクトリ, [1]: ファイル
     path = os.path.split(__file__)
@@ -35,15 +43,18 @@ def main():
     print("Relative Path: {}".format(relPath))
 
     print("===================")
-    
+
+    # 該当するファイルを取り出し
     files = glob("test/*.py")
     for f in files:
         print("File: {}".format(f))
     print("-------------------")
-    
-    for f in sorted(files):
+
+    files = sorted(glob("test/*.py"))
+    for f in files:
         print("File: {}".format(f))
-    
+
+        
     return
 
 
